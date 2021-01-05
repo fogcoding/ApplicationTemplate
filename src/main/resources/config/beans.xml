@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="com.*"/>
+
+    <bean name="landlord_xml" class="com.fogcoding.XMLAop.pojo.LandLord"/>
+<!--    <bean name="landlord" class="XMLAop.pojo.LandLord"/>-->
+
+    <bean name="productService" class="com.fogcoding.XMLAop.service.ProductService" />
+    <bean name="loggerAspect" class="com.fogcoding.XMLAop.aspect.LoggerAspect" />
+
+    <!-- 配置AOP -->
+    <aop:config>
+        <!-- where：在哪些地方（包.类.方法）做增加 -->
+        <aop:pointcut id="loggerCutpoint"
+                      expression="execution(* com.fogcoding.XMLAop.service.ProductService.*.*(..)) "/>
+
+        <!-- what:做什么增强 -->
+        <aop:aspect id="logAspect" ref="loggerAspect">
+            <!-- when:在什么时机（方法前/后/前后） -->
+            <aop:around pointcut-ref="loggerCutpoint" method="log"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>

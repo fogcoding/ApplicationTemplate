@@ -26,16 +26,21 @@ public class Application {
          * 3.支持动态拓展和功能解耦
          */
 
-        System.out.println("当前执行文件的路径为：" + pwd());
+        String pwd = pwd();
 
-        String[] locations = {"file:D:\\workspace\\tmp\\ApplicationTemplate\\config\\application.xml"};
-//        String[] locations = {"classpath*:config/application.xml"};
+        System.out.println("当前执行文件的路径为：" + pwd);
 
-//        ClassPathXmlApplicationContext xmlApplicationContext = new ClassPathXmlApplicationContext(locations);
-        FileSystemXmlApplicationContext fileSystemXmlApplicationContext = new FileSystemXmlApplicationContext(locations);
+//        String[] locations = {"file:D:\\workspace\\tmp\\ApplicationTemplate\\config\\application.xml"};
 
-        System.out.println(new Gson().toJson(fileSystemXmlApplicationContext.getEnvironment().getSystemProperties()));
-        for (String s :fileSystemXmlApplicationContext.getBeanDefinitionNames()){
+        String[] locations = {"file:" + pwd + "/config/application.xml"};
+
+        //        String[] locations = {"classpath*:config/application.xml"};
+
+        ClassPathXmlApplicationContext xmlApplicationContext = new ClassPathXmlApplicationContext(locations);
+//        FileSystemXmlApplicationContext fileSystemXmlApplicationContext = new FileSystemXmlApplicationContext(locations);
+
+//        System.out.println(new Gson().toJson(fileSystemXmlApplicationContext.getEnvironment().getSystemProperties()));
+        for (String s :xmlApplicationContext.getBeanDefinitionNames()){
             System.out.println(s);
         }
 
@@ -52,10 +57,13 @@ public class Application {
         String jar_path = Application.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         System.out.println("读取到的路径: " + jar_path);
         int position = jar_path.lastIndexOf("/");
-        String curent_path = jar_path.substring(0,position);
+        String curent_path = jar_path.substring(1,position);
+        int position1 = curent_path.lastIndexOf("/");
+        String final_curent_path = curent_path.substring(0,position1);
 
-        System.out.println("读取到的路径: " + curent_path);
-        return curent_path;
+
+        System.out.println("读取到的路径: " + final_curent_path);
+        return final_curent_path;
     }
 
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="animal1" class="com.fogcoding.XMLinjection.Animal">
+        <property name="name" value="elephant"/>
+        <property name="price" value="1000"/>
+    </bean>
+
+    <bean id="animal2" class="com.fogcoding.XMLinjection.Animal">
+        <property name="name" value="tiger"/>
+        <property name="price" value="2000"/>
+    </bean>
+
+    <bean name="human1" class="com.fogcoding.XMLinjection.Human"
+          c:name="fog" c:age="28"/>
+
+    <bean name="human2" class="com.fogcoding.XMLinjection.Human"
+          c:_0="duan" c:_1="280"/>
+
+    <bean id="stocks" class="com.fogcoding.XMLinjection.Stocks">
+        <property name="animal1" ref="animal1"/>
+        <property name="animal2" ref="animal2"/>
+    </bean>
+
+    <bean id="list" class="com.fogcoding.XMLinjection.ListDemo">
+        <property name="strs">
+            <list>
+                <value>one</value>
+                <value>two</value>
+                <value>three</value>
+            </list>
+        </property>
+        <property name="animals">
+            <list>
+                <ref bean="animal1"/>
+                <ref bean="animal2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="map" class="com.fogcoding.XMLinjection.MapDemo">
+        <property name="maps">
+            <map>
+                <entry key="key1" value="value1"/>
+                <entry key="key2" value="value2"/>
+                <entry key="key3" value="value3"/>
+            </map>
+        </property>
+        <property name="animalMap">
+            <map>
+                <entry key="elephant" value-ref="animal1"/>
+                <entry key="tiger" value-ref="animal2"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="set" class="com.fogcoding.XMLinjection.SetDemo">
+        <property name="sets">
+            <set>
+                <ref bean="animal1"/>
+                <ref bean="animal2"/>
+            </set>
+        </property>
+    </bean>
+
+
+
+</beans>

@@ -103,7 +103,8 @@
                             <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
                             <useUniqueVersions>false</useUniqueVersions>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
+<!--                            <classpathPrefix>lib/</classpathPrefix>-->
+                            <classpathPrefix>./</classpathPrefix>
                         </manifest>
                         <manifestEntries>
                             <!--jar中的MANIFEST.MF文件ClassPath需要添加config目录才能读取到配置文件-->

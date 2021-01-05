@@ -4,10 +4,9 @@
         <format>zip</format>
     </formats>
     <dependencySets>
-
         <!--依赖包打包到lib下,false lib下不包含本工程包, true:包含-->
         <dependencySet>
-            <useProjectArtifact>false</useProjectArtifact>
+            <useProjectArtifact>true</useProjectArtifact>
             <outputDirectory>lib</outputDirectory>
         </dependencySet>
     </dependencySets>
@@ -32,7 +31,7 @@
 
         <!-- 打包配置文件到config下 -->
         <fileSet>
-            <directory>src/main/resources</directory>
+            <directory>src/main/resources/config</directory>
             <outputDirectory>/config</outputDirectory>
             <includes>
                 <include>**/*.properties</include>
@@ -40,15 +39,24 @@
                 <include>**/*.xml</include>
             </includes>
         </fileSet>
+        <fileSet>
+            <directory>src/main/resources/</directory>
+            <outputDirectory>/config</outputDirectory>
+            <includes>
+                <include>*.properties</include>
+            </includes>
+        </fileSet>
+
+
 
         <!-- 打包本工程jar文件到根目录下 -->
-        <fileSet>
-            <directory>target</directory>
-            <includes>
-                <include>*.jar</include>
-            </includes>
-            <outputDirectory>/</outputDirectory>
-        </fileSet>
+<!--        <fileSet>-->
+<!--            <directory>target</directory>-->
+<!--            <includes>-->
+<!--                <include>*.jar</include>-->
+<!--            </includes>-->
+<!--            <outputDirectory>/lib</outputDirectory>-->
+<!--        </fileSet>-->
 
     </fileSets>
 </assembly>
